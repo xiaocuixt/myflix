@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
 
 gem 'bootstrap-sass', '3.1.1.1'
 gem 'coffee-rails'
@@ -17,9 +16,9 @@ group :development do
 end
 
 group :development, :test do
+  gem 'rspec-rails'
   gem 'pry'
   gem 'pry-nav'
-  gem 'rspec-rails', '2.99'
 end
 
 group :test do
@@ -31,4 +30,3 @@ end
 group :production do
   gem 'rails_12factor'
 end
-
