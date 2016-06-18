@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'bcrypt-ruby'
 gem 'bootstrap_form'
+gem "mysql2", '~> 0.3.16'
 
 group :development do
   gem 'thin'
