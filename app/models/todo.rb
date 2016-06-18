@@ -10,10 +10,15 @@ class Todo < ActiveRecord::Base
 	end
 
   def display_text
+    name + tag_text
+  end
+
+  private
+  def tag_text
     if tags.any?
-      name + " (#{tags.one? ? 'tag' : 'tags'}: #{tags.map(&:name).first(4).join(", ")}#{', more...' if tags.count > 4})"
+      " (#{tags.one? ? 'tag' : 'tags'}: #{tags.map(&:name).first(4).join(", ")}#{', more...' if tags.count > 4})"
     else
-      name
+      ""
     end
   end
 end
