@@ -1,13 +1,13 @@
 Myflix::Application.routes.draw do
 	root "pages#front"
+  get "home", to: "videos#index"
 
 	resources :videos, only: [:show] do
+    resources :reviews, only: :create
 		collection do
 			get :search
 		end
 	end
-
-	get "home", to: "videos#index"
 
 	resources :users, only: :create
 	get "/register", to: "users#new"
