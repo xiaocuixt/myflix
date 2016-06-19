@@ -1,0 +1,9 @@
+%section.new_todo
+  %h3 Add a new todo
+  =form_for @todo do |f|
+    = f.label :name, "Name"
+    = f.text_field :name
+    = f.label :description, "Description"
+    = f.text_area :description, rows: 6
+    %br
+    = f.submit "Add This Todo"
