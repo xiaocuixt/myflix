@@ -14,3 +14,6 @@ xiaocui = User.create(email: "cjw624923@gmail.com", password: "12345678", full_n
 
 Review.create(user: xiaocui, video: back, content: "this is really nice movie!", rating: 5)
 Review.create(user: xiaocui, video: fut, content: "this is horrible movie!", rating: 3)
+
+QueueItem.create(user: xiaocui, video: back)
+QueueItem.create(user: xiaocui, video: fut)

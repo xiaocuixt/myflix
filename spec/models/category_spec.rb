@@ -16,6 +16,7 @@ describe Category do
 
 	# 上面的写法通过shoulda-matchers可以简化为：
 	it { should have_many(:videos) }
+	it {should validate_presence_of(:name)}
 
 	describe "#recent_videos" do
 		it "return the videos in the reverse chronical order by created at" do
