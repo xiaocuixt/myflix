@@ -4,7 +4,7 @@ describe ReviewsController do
   describe "POST create" do
     context "with authenticated users" do
       let (:current_user) {Fabricate(:user)}
-      before {session[:user_id] = current_user.id}
+      before { session[:user_id] = current_user.id }
 
       context "with valid inputs" do
         it "redirects to video show page" do
@@ -46,6 +46,7 @@ describe ReviewsController do
           expect(assigns(:video)).to eq(video)
         end
         it "sets @reviews" do
+          video = Fabricate(:video)
           review = Fabricate(:review, video: video)
           post :create, review: {rating: 5}, video_id: video.id
           expect(assigns(:reviews)).to match_array([review])

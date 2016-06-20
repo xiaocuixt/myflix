@@ -3,18 +3,14 @@ class ReviewsController < ApplicationController
 
   def create
     @video = Video.find(params[:video_id])
-    review = @video.reviews.create(review_params.merge!(user: current_user))
-    return redirect_to @video
+    review = @video.reviews.build(params.require(:review).permit(:content, :rating).merge!(user: current_user))
+
     if review.save
+      flash[:success] = "Thank you for your review."
       redirect_to @video
     else
-      @reviews = @video.reviews
-      render "videos/show"
+      @reviews = @video.reviews.reload
+      render 'videos/show'
     end
-  end
-
-  private
-  def review_params
-    params.require(:review).permit(:user_id, :video_id, :rating, :content)
   end
 end
