@@ -24,7 +24,7 @@ class QueueItemsController < ApplicationController
         update_queue_items
         normalize_queue_item_positions
       end
-    rescue StandardError => e
+    rescue ActiveRecord::RecordInvalid
       flash.now[:error] = "invalid positon numbers."
     end
     redirect_to my_queue_path
