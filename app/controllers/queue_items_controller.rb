@@ -33,8 +33,8 @@ class QueueItemsController < ApplicationController
   private
   def update_queue_items
     params[:queue_items].each do |queue_item_data|
-      queueitem = QueueItem.find(queue_item_data["id"])
-      queueitem.update!(position: queue_item_data["position"])
+      queue_item = QueueItem.find(queue_item_data["id"])
+      queue_item.update!(position: queue_item_data["position"], rating: queue_item_data["rating"])
     end
   end
 
