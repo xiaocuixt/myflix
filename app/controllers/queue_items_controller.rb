@@ -14,7 +14,7 @@ class QueueItemsController < ApplicationController
   def destroy
     queue_item = QueueItem.find(params[:id])
     queue_item.destroy if current_user.queue_items.include?(queue_item)
-    normalize_queue_item_positions
+    current_user.normalize_queue_item_positions
     redirect_to my_queue_path
   end
 
@@ -22,7 +22,7 @@ class QueueItemsController < ApplicationController
     begin
       ActiveRecord::Base.transaction do
         update_queue_items
-        normalize_queue_item_positions
+        current_user.normalize_queue_item_positions
       end
     rescue ActiveRecord::RecordInvalid
       flash[:error] = "invalid positon numbers."
@@ -35,12 +35,6 @@ class QueueItemsController < ApplicationController
     params[:queue_items].each do |queue_item_data|
       queueitem = QueueItem.find(queue_item_data["id"])
       queueitem.update!(position: queue_item_data["position"])
-    end
-  end
-
-  def normalize_queue_item_positions
-    current_user.queue_items.each_with_index do |queue_item, index|
-      queue_item.update!(position: index + 1)
     end
   end
 
