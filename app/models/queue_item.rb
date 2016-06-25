@@ -1,6 +1,7 @@
 class QueueItem < ActiveRecord::Base
   belongs_to :user
   belongs_to :video
+  validates_numericality_of :position, { only_integer: true }
 
   # 等价于 delegate :title, to: :video, prefix: :video
   def video_title
