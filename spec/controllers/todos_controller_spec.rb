@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe TodosController do
   before do
-  	set_current_user
+  	set_todo_current_user
   end
 
 	describe "GET index" do

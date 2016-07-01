@@ -1,6 +1,6 @@
 # 这里表示rspec的宏指令，可以在其它rspec方法中调用这里定义的方法。
 
-def set_current_user
+def set_todo_current_user
   john = Fabricate(:user)
   session[:user_id] = john.id
 end
@@ -11,4 +11,8 @@ end
 
 def clear_current_user
   session[:user_id] = nil
+end
+
+def set_current_user(user=nil)
+  session[:user_id] = ( user || Fabricate(:user) ).id
 end
