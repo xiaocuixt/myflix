@@ -12,9 +12,12 @@ back = Video.create(title: "Back to Future", description: 'Time Trval!', cover_i
 south = Video.create(title: "South Park", description: 'South Park', cover_image_url: "/tmp/south_park.jpg", category_id: 2)
 
 xiaocui = User.create(email: "cjw624923@gmail.com", password: "12345678", full_name: "xiaocui")
+cui = User.create(email: "cui@gmail.com", password: "12345678", full_name: "cui")
 
 Review.create(user: xiaocui, video: back, content: "this is really nice movie!", rating: 5)
+Review.create(user: cui, video: back, content: "this is really nice movie!", rating: 5)
 Review.create(user: xiaocui, video: fut, content: "this is horrible movie!", rating: 3)
+Review.create(user: cui, video: fut, content: "this is horrible movie!", rating: 3)
 
 QueueItem.create(user: xiaocui, video: back, position: 2)
 QueueItem.create(user: xiaocui, video: fut, position: 1)

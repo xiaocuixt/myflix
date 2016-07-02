@@ -18,4 +18,12 @@ class User < ActiveRecord::Base
     #queue_items.where(video_id: video.id).first.present?
     queue_items.map(&:video).include?(video)
   end
+
+  def follow?(anthor_user)
+    following_relationships.map(&:leader).include?(anthor_user)
+  end
+
+  def can_follow?(anthor_user)
+    !follow?(anthor_user) && self != anthor_user
+  end
 end
