@@ -3,6 +3,7 @@ require "spec_helper"
 describe User do
   it { should have_many(:queue_items).order(:position) }
   it { should have_many(:reviews).order("created_at DESC")}
+  it { should have_many(:following_relationships)}
 
   describe "#queued_video?" do
     it "return true if the user has queued the video" do

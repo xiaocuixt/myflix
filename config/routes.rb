@@ -8,6 +8,8 @@ Myflix::Application.routes.draw do
 			get :search
 		end
 	end
+  get '/people', to: "relationships#index", as: :people
+  resources :relationships, only: :destroy
 
   resources :category, only: :show
 
