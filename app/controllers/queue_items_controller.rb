@@ -1,5 +1,5 @@
 class QueueItemsController < ApplicationController
-  before_filter :require_user
+  before_action :require_user
 
   def index
     @queue_items = current_user.queue_items
@@ -14,10 +14,30 @@ class QueueItemsController < ApplicationController
   def destroy
     queue_item = QueueItem.find(params[:id])
     queue_item.destroy if current_user.queue_items.include?(queue_item)
+    current_user.normalize_queue_item_positions
+    redirect_to my_queue_path
+  end
+
+  def update_queue
+    begin
+      ActiveRecord::Base.transaction do
+        update_queue_items
+        current_user.normalize_queue_item_positions
+      end
+    rescue ActiveRecord::RecordInvalid
+      flash[:error] = "invalid positon numbers."
+    end
     redirect_to my_queue_path
   end
 
   private
+  def update_queue_items
+    params[:queue_items].each do |queue_item_data|
+      queue_item = QueueItem.find(queue_item_data["id"])
+      queue_item.update!(position: queue_item_data["position"], rating: queue_item_data["rating"])
+    end
+  end
+
   def queue_video video
     QueueItem.create(video: video, user: current_user, position: new_queue_item_position) unless current_user_queued_video? video
   end

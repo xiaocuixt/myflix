@@ -8,13 +8,16 @@ Myflix::Application.routes.draw do
 			get :search
 		end
 	end
+  get '/people', to: "relationships#index", as: :people
+  resources :relationships, only: [:destroy, :create]
 
   resources :category, only: :show
 
   get "/my_queue", to: "queue_items#index"
   resources :queue_items, only: [:create, :destroy]
+  post :update_queue, to: "queue_items#update_queue"
 
-	resources :users, only: :create
+	resources :users, only: [:create, :show]
 	get "/register", to: "users#new"
 
 	get "/sign_in", to: "sessions#new", as: :sign_in

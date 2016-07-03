@@ -17,7 +17,7 @@ describe Todo do
 	end
 
 	describe "#display_text" do
-		let (:todo) {Todo.create(name: "cook dinner")}  #等价于 todo = Todo.create(name: "cook dinner"),并放置在before_filter中
+		let (:todo) {Todo.create(name: "cook dinner")}  #等价于 todo = Todo.create(name: "cook dinner"),并放置在before_action中
     let (:subject) {todo.display_text}
 
     context "no tags" do
