@@ -19,6 +19,24 @@ describe UsersController do
       end
     end
 
+    context "email sending" do
+      after { ActionMailer::Base.deliveries.clear }
+      it "sends out the email with valid inputs" do
+        post :create, user: {email: "xiaocui@test.com", password: "password", full_name: "xiaocui"}
+        message = ActionMailer::Base.deliveries.last
+        expect(message.to).to eq(["xiaocui@test.com"])
+      end
+      it "sends out email contains the user's name with valid inputs" do
+        post :create, user: {email: "xiaocui@test.com", password: "password", full_name: "xiaocui"}
+        message = ActionMailer::Base.deliveries.last
+        expect(message.body).to include("xiaocui")
+      end
+      it "doesn't send email with unvalid inputs" do
+        post :create, user: {email: "xiaocui@test.com", full_name: "xiaocui"}
+        expect(ActionMailer::Base.deliveries).to be_empty
+      end
+    end
+
     context "with invalid user" do
       before { post :create, user: {password: "password", full_name: "xiaocui"} }
       it "does not create new user" do
