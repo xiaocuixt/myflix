@@ -3,4 +3,9 @@ class AppMailer < ActionMailer::Base
     @todo = todo
     mail from: "info@todoapp.com", to: user.email, subject: "You create a new todo"
   end
+
+  def send_welcome_email(user)
+    @user = user
+    mail from: "info@myfix.com", to: user.email, subject: "Welcome to Myflix!"
+  end
 end
