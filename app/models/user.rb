@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   has_secure_password validations: false
 
+  before_create :generate_token
+
   def normalize_queue_item_positions
     queue_items.each_with_index do |queue_item, index|
       queue_item.update!(position: index + 1)
@@ -23,7 +25,15 @@ class User < ActiveRecord::Base
     following_relationships.map(&:leader).include?(anthor_user)
   end
 
+  def follow(anthor_user)
+    following_relationships.create(leader: anthor_user) if can_follow?(anthor_user)
+  end
+
   def can_follow?(anthor_user)
     !follow?(anthor_user) && self != anthor_user
+  end
+
+  def generate_token
+    self.token = SecureRandom.urlsafe_base64
   end
 end
