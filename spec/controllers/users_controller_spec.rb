@@ -19,9 +19,9 @@ describe UsersController do
       end
       it "makes the user follow the inviter" do
         alice = Fabricate(:user)
-        invitation = Invitation.create(inviter: alice, recipient_email: "joe@example.com", recipient_name: "Joe")
-        post :create, user: {email: "joe@example.com", full_name: "Joe Doe", invitation_token: invitation.token}
-        joe = User.where(email: "joe@example.com").first
+        invitation = Invitation.create(inviter_id: alice.id, recipient_email: "joe@example.com", recipient_name: "Joe")
+        post :create, user: {email: "joe@example.com",password: "12345678", full_name: "Joe Doe", invitation_token: invitation.token}
+        joe = User.find_by(email: "joe@example.com")
         expect(joe.follow?(alice)).to be_truthy
       end
       it "makes the inviter follow the user"

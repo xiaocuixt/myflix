@@ -2,6 +2,10 @@
 	root "pages#front"
   get "home", to: "videos#index"
 
+  namespace :admin do
+    resources :videos, only: [:new, :create]
+  end
+
 	resources :videos, only: [:show] do
     resources :reviews, only: :create
 		collection do
