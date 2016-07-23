@@ -3,6 +3,9 @@ class Video < ActiveRecord::Base
   has_many :reviews
   has_many :queue_items
 
+  mount :large_cover, LargeCoverUploader
+  mount :small_cover, SmallCoverUploader
+
 	# validates :title, presence: true
 	# validates :description, presence: true
 
