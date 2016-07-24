@@ -2,6 +2,10 @@
 	root "pages#front"
   get "home", to: "videos#index"
 
+  namespace :admin do
+    resources :videos, only: [:new, :create]
+  end
+
 	resources :videos, only: [:show] do
     resources :reviews, only: :create
 		collection do
@@ -23,7 +27,7 @@
 
 	get "/sign_in", to: "sessions#new", as: :sign_in
 	resources :sessions, only: [:create, :destroy]
-	delete "/sign_out", to: "sessions#destroy"
+	get "/sign_out", to: "sessions#destroy"
 
   get "forgot_password", to: "forgot_passwords#new"
   resources :forgot_passwords, only: :create

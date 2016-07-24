@@ -12,6 +12,9 @@ gem 'bcrypt-ruby'
 gem 'bootstrap_form'
 gem "mysql2", '~> 0.3.16'
 
+gem "carrierwave"
+gem "mini_magick"
+
 group :development do
   gem 'thin'
   gem "better_errors"

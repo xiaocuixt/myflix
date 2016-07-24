@@ -51,6 +51,12 @@ GEM
     capybara-email (2.5.0)
       capybara (~> 2.4)
       mail
+    carrierwave (0.11.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+      mimemagic (>= 0.3.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -91,6 +97,8 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mimemagic (0.3.1)
+    mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.3.4)
     multi_json (1.10.1)
@@ -194,6 +202,7 @@ DEPENDENCIES
   bootstrap_form
   capybara
   capybara-email
+  carrierwave
   coffee-rails
   database_cleaner (= 1.4.1)
   fabrication
@@ -202,6 +211,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   letter_opener
+  mini_magick
   mysql2 (~> 0.3.16)
   pg
   pry
