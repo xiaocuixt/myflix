@@ -12,7 +12,7 @@ class Admin::VideosController < ApplicationController
       flash[:success] = "You have successfully add the video #{@video.title}."
       redirect_to new_admin_video_path
     else
-      flash[:error] = "You cannot add this video, Please check errors."
+      flash.now[:error] = "You cannot add this video, Please check errors."
       render :new
     end
   end
@@ -27,6 +27,6 @@ class Admin::VideosController < ApplicationController
 
   def video_params
     params.require(:video).permit(:title, :category_id, :small_cover, :large_cover,
-                                  :description)
+                                  :description, :video_url)
   end
 end

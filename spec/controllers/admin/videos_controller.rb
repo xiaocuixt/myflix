@@ -68,7 +68,7 @@ describe Admin::VideosController do
         set_current_admin
         category = Fabricate(:category)
         post :create, video: {category_id: category.id, description: "good show!"}
-        expect(assigns(:video)).to be_instance_of Video
+        expect(assigns(:video)).to be_a_new Video
       end
       it "sets the error flash message" do
         set_current_admin

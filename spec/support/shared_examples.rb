@@ -2,7 +2,7 @@ shared_examples "require_sign_in" do
   it "redirects to the sign in page" do
     clear_current_user
     action
-    response.should redirect_to sign_in_path
+    expect(response).to redirect_to sign_in_path
   end
 end
 
@@ -10,7 +10,7 @@ shared_examples "require_admin" do
   it "redirects to the home page" do
     set_current_user
     action
-    response.should redirect_to home_path
+    expect(response).to redirect_to home_path
   end
 end
 
