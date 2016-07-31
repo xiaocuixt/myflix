@@ -3,7 +3,7 @@ require "spec_helper"
 describe StripeWrapper do
   describe StripeWrapper::Charge do
     describe ".create" do
-      it "makes a successful charge" do
+      it "makes a successful charge", :vcr do
         Stripe.api_key = ENV['STRIPE_SECRET_KEY']
         token = Stripe::Token.create(
           :card => {
@@ -17,7 +17,7 @@ describe StripeWrapper do
         response = StripeWrapper::Charge.create(
           :amount => 999,
           :currency => "usd",
-          :source => "tok_18addbJkbwsvv4ge64QFYNWm",
+          :source => token,
           :description => "Charge for test@example.com"
         )
 

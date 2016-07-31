@@ -5,7 +5,7 @@ module StripeWrapper
         amount: options[:amount],
         currency: "usd",
         card: options[:card],
-        source: "tok_18ahUJJkbwsvv4gejx0pSMLt",
+        source: options[:source],
         description: options[:description]
       )
     end
