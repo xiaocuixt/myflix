@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include Tokenable
   has_many :reviews, -> {order("created_at DESC")}
   has_many :queue_items, -> {order(:position)}
   has_many :following_relationships, class_name: "Relationship", foreign_key: :follower_id
@@ -21,6 +22,10 @@ class User < ActiveRecord::Base
 
   def follow?(anthor_user)
     following_relationships.map(&:leader).include?(anthor_user)
+  end
+
+  def follow(anthor_user)
+    following_relationships.create(leader: anthor_user) if can_follow?(anthor_user)
   end
 
   def can_follow?(anthor_user)
