@@ -15,6 +15,9 @@ gem "mysql2", '~> 0.3.16'
 gem "carrierwave"
 gem "mini_magick"
 
+gem 'stripe', '~> 1.48'
+gem 'figaro', '~> 1.1'
+
 group :development do
   gem 'thin'
   gem "better_errors"
@@ -37,6 +40,7 @@ group :test do
   gem 'capybara'
   gem "launchy"
   gem "capybara-email"
+  gem "webmock"
 end
 
 group :production do
