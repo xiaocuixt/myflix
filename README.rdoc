@@ -261,3 +261,4 @@ vendor
   vendor/rails/. This directory is in the load path.
 jekins
   ci test with jekins
+  ci test with jekins
