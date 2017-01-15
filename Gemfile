@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
 gem 'bootstrap-sass', '3.1.1.1'
 gem 'coffee-rails'
