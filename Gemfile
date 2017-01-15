@@ -41,6 +41,7 @@ group :test do
   gem "launchy"
   gem "capybara-email"
   gem "webmock"
+  gem "ci_reporter_rspec"
 end
 
 group :production do
