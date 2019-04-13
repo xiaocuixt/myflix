@@ -5,9 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Category.destroy_all
+Video.destroy_all
+User.destroy_all
+Review.destroy_all
+QueueItem.destroy_all
+
 Category.create([{id: 1, name: "TV Commedies"}, {id: 2, name: "TV Dramas"}, {id: 3, name: "Reality TV"}])
 
-fut = Video.create(title: "Futurama", description: "Space Trval!", large_cover_url: "/tmp/monk_large.jpg", cover_image_url: "/tmp/monk.jpg", category_id: 1)
+fut = Video.create(title: "Futurama", description: "Space Trval!", cover_image_url: "/tmp/monk.jpg", category_id: 1)
 back = Video.create(title: "Back to Future", description: 'Time Trval!', cover_image_url: "/tmp/family_guy.jpg", category_id: 2)
 south = Video.create(title: "South Park", description: 'South Park', cover_image_url: "/tmp/south_park.jpg", category_id: 2)
 
