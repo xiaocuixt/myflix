@@ -15,6 +15,9 @@ gem "mysql2", '~> 0.3.16'
 gem "carrierwave"
 gem "mini_magick"
 
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 gem 'stripe', '~> 1.48'
 gem 'figaro', '~> 1.1'
 
