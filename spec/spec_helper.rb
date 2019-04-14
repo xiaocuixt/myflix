@@ -26,6 +26,9 @@ VCR.configure do |c|
 end
 
 RSpec.configure do |config|
+  config.before(:each, elasticsearch: true) do
+    Video.__elasticsearch__.create_index! force: true
+  end
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
