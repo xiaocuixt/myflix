@@ -10,6 +10,7 @@
     resources :reviews, only: :create
 		collection do
 			get :search
+      get :advanced_search, to: "videos#advanced_search", as: :advanced_search
 		end
 	end
   get '/people', to: "relationships#index", as: :people
