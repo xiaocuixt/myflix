@@ -18,8 +18,13 @@ class Video < ActiveRecord::Base
 		where("title LIKE ?", "%#{search_term}%").order("created_at DESC")
 	end
 
+  def average_rating
+    reviews.average(:rating).round(1) if reviews.any?
+  end
+
   def as_indexed_json(options={})
     as_json(
+      methods: [:average_rating],
       only: [:title, :description],
       include: {
         reviews: {only: [:content]}
@@ -40,6 +45,17 @@ class Video < ActiveRecord::Base
       }
       if query.present? && options[:reviews].present?
         search_def[:query][:multi_match][:fields] << "reviews.content"
+      end
+
+      if options[:rating_from].present? || options[:rating_to].present?
+        search_def[:filter] = {
+          range: {
+            average_rating: {
+              gte: (options[:rating_from] if options[:rating_from].present?),
+              lte: (options[:rating_to] if options[:rating_to].present?)
+            }
+          }
+        }
       end
       __elasticsearch__.search(search_def)
     end
