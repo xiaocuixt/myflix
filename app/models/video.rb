@@ -19,7 +19,7 @@ class Video < ActiveRecord::Base
 	end
 
   def average_rating
-    reviews.average(:rating).round(1) if reviews.any?
+    reviews.average(:rating).to_f.round(1) if reviews.any?
   end
 
   def as_indexed_json(options={})
@@ -48,7 +48,7 @@ class Video < ActiveRecord::Base
       end
 
       if options[:rating_from].present? || options[:rating_to].present?
-        search_def[:filter] = {
+        search_def[:query] = {
           range: {
             average_rating: {
               gte: (options[:rating_from] if options[:rating_from].present?),
