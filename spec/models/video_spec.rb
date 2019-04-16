@@ -8,6 +8,27 @@ describe Video do
       Video.__elasticsearch__.refresh_index!
     end
 
+    context "with title, description and reviews" do
+      it 'returns an an empty array for no match with reviews option' do
+        star_wars = Fabricate(:video, title: "Star Wars")
+        batman    = Fabricate(:video, title: "Batman")
+        batman_review = Fabricate(:review, video: batman, content: "such a star movie!")
+        refresh_index
+
+        expect(Video.search("no_match", reviews: true).records.to_a).to eq([])
+      end
+
+      it 'returns an array of many videos with relevance title > description > review' do
+        star_wars = Fabricate(:video, title: "Star Wars")
+        about_sun = Fabricate(:video, description: "the sun is a star!")
+        batman    = Fabricate(:video, title: "Batman")
+        batman_review = Fabricate(:review, video: batman, content: "such a star movie!")
+        refresh_index
+
+        expect(Video.search("star", reviews: true).records.to_a).to eq([star_wars, about_sun, batman])
+      end
+    end
+
     context "with title" do
       it "returns no results when there's no match" do
         Fabricate(:video, title: "Futurama")
