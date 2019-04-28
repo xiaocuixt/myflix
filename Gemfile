@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'bootstrap-sass', '3.1.1.1'
 gem 'coffee-rails'
-gem 'rails', '4.1.1'
+gem 'rails', '4.2.2'
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'uglifier'
@@ -17,6 +17,8 @@ gem "mini_magick"
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+
+gem "sidekiq"
 
 gem 'stripe', '~> 1.48'
 gem 'figaro', '~> 1.1'

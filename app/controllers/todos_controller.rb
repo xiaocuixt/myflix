@@ -13,7 +13,7 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
     if @todo.save_with_tags
-      AppMailer.notify_on_new_to(current_user, @todo).deliver
+      AppMailer.delay.notify_on_new_to(current_user, @todo)
       redirect_to root_path
     else
       render :new

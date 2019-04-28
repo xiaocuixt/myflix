@@ -40,6 +40,11 @@ class Video < ActiveRecord::Base
             query: query,
             fields: ["title^100", "description^50"],  #100和50表示权重
             operator: "and"
+          },
+          bool: {
+            must: [
+              term: {title: ""}
+            ]
           }
         }
       }
